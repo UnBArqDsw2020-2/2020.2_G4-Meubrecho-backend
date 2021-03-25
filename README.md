@@ -20,7 +20,8 @@
 ## Principais funcionalidades
 * _CR_ de Usuários;
 * _CRD_ de produtos
-* Busca de produtos
+* Filtro de produtos
+* Cadastro de fotos de produtos
 
 # Guia de instalação
 
