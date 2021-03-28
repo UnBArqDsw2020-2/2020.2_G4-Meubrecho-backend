@@ -5,6 +5,8 @@ import authConfig  from '../../config/auth'
 class SessionController{
     async logarUsuario(req,res){  
         const { email,senha } = req.body;
+
+        
         const user = await User.findOne({email:email});
 
         if(!user){
@@ -24,11 +26,11 @@ class SessionController{
                 id,
                 nome,
                 email,
-                token: jwt.sign({id},authConfig.secret,{
-                    expiresIn: "7d"
-                })
-           }
-       })
+           },
+           token: jwt.sign({id},authConfig.secret,{
+            expiresIn: "1d"
+        }),
+       });
       
 
 

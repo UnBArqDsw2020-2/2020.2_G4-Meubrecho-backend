@@ -15,14 +15,13 @@ import validacaoLoginUsuario from './app/validators/SessionLogarUsuario'
 
 // rotas não autenticadas
 
-routes.post('/', validacaoCadastroUsuario,Usercontroller.cadastrarUsuario);
-routes.post('/login',validacaoLoginUsuario,SessionController.logarUsuario)
+routes.post('/users',validacaoCadastroUsuario,Usercontroller.cadastrarUsuario);
+routes.post('/sessions',validacaoLoginUsuario,SessionController.logarUsuario)
 
 
-// rotas que precisam de autenticação
-
+//middleware
 routes.use(autenticadas);
-
+// Todas rotas abaixo necessitam do usuário estar logado.
 
 // Essa rota é teste para verificar a autenticação (excluirdepois)
 routes.get("/",Usercontroller.teste);
