@@ -3,12 +3,14 @@ import express from 'express';
 import cors from 'cors';
 import routes from './routes';
 import './database';
+import cors from "cors";
 
 class App {
   constructor() {
     this.server = express();
     this.middlewares();
     this.routes();
+    this.server.use(cors());
   }
 
   middlewares() {
