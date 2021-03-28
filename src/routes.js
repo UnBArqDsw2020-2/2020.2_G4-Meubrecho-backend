@@ -5,14 +5,18 @@ import Usercontroller from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 const routes = new Router();
 
+
+//middlewares
 import autenticadas from "./app/middlewares/auth";
+import validacaoCadastroUsuario from './app/validators/UsercadastrarUsuario'
+import validacaoLoginUsuario from './app/validators/SessionLogarUsuario'
 
 
 
 // rotas não autenticadas
 
-routes.post('/', Usercontroller.cadastrarUsuario);
-routes.post('/login',SessionController.logarUsuario)
+routes.post('/', validacaoCadastroUsuario,Usercontroller.cadastrarUsuario);
+routes.post('/login',validacaoLoginUsuario,SessionController.logarUsuario)
 
 
 // rotas que precisam de autenticação
