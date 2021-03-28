@@ -2,9 +2,25 @@
 import User from '../models/User';
 import bcrypt from "bcryptjs";
 import { cpf } from 'cpf-cnpj-validator'; 
+import * as Yup from "yup";
 class UserController {
 
   async cadastrarUsuario(req,res){
+
+    const schema = Yup.object().shape({
+      nome: Yup.string().required(),
+      cpf: Yup.string().required(),
+      whatsapp: Yup.string().required(),
+      email: Yup.string()
+      .email()
+      .required(),
+      senha: Yup.string()
+      .required()
+    });
+
+  if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: "Erro de validação" });
+  }     
   
     const { email,senha } = req.body;
     let verifyCPF = cpf.isValid(req.body.cpf);
