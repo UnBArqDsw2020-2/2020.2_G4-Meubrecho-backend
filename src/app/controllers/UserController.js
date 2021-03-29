@@ -1,31 +1,15 @@
-import User from '../models/User'
-import * as  cpfv  from 'cpf-cnpj-validator'; 
-import Criptografia from  '../services/crypto'
+import CadastrarUsuarioService from '../services/CadastrarUsuarioService';
 class UserController {
 
   async cadastrarUsuario(req,res){   
-  
-    const { email,senha } = req.body;
-    let verifyCPF = cpfv.cpf.isValid(req.body.cpf);
-    if(verifyCPF == false){
-      return res.status(400).json({error:"CPF Inválido"})
-
-    }
-    let findUser  = await User.findOne({email:email});
-    if(findUser){
-      return res.status(400).json({error:"Usuário já cadastrado"})
-    }
-
-    const senhaCrypto = await Criptografia.crypto(req.body.senha);
-  
-      const user = await User.create({
-          nome: req.body.nome,
-          email:email,
-          senha: senhaCrypto,
-          cpf: req.body.cpf,
-          whatsapp: req.body.whatsapp
-      });
-    
+    const { nome,email,senha,cpf,whatsapp} = req.body;
+    const user = await CadastrarUsuarioService.run(
+      nome,
+      email,
+      senha,
+      cpf,
+      whatsapp,
+    )
     return res.json(user);
     
   }
