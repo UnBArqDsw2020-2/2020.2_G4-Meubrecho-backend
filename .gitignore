@@ -1,9 +1,2 @@
-# compiled output
-/dist
-/node_modules
 
-# IDEs and editors
-/.idea
-
-#.env
-*.env
+node_modules/
