@@ -10,6 +10,12 @@ class ProductController {
     const product = await ProductService.productCreate(payload);
     return res.json(product);
   }
+  async buscarProduto(req,res){
+    const{id} = req.params
+
+    const product = await ProductService.productGet(id)
+    return res.json(product)
+  }
 }
 
 export default new ProductController();

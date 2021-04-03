@@ -16,6 +16,15 @@ class ProductService {
       return { sucess: false, error: error };
     }
   }
+  async productGet(id){
+    try{
+      const product = await Product.findById(id)
+      return product
+    }catch(error){
+      return{sucess:false , error:error}
+    }
+    
+  }
 }
 
 export default new ProductService();
