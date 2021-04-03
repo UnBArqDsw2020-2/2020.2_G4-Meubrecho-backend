@@ -9,6 +9,7 @@ class ProductService {
         descricao: payload.descricao,
         preco: payload.preco,
         user_id: payload.user_id,
+        tag : payload.tag,
       });
 
       return product;

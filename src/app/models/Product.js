@@ -22,12 +22,11 @@ const ProductSchema = new mongoose.Schema({
     type: mongoose.Schema.User.ObjectId,
     ref: "User",
   },
-  /* estado: {
-      type: mongoose.Schema.Estado.ObjectId, ref: 'Estado'
-    }
-     tags: [
-      {type: mongoose.Schema.Tag.ObjectId, ref: 'Tag'}
-    ] */
+  
+  tag: {
+   type: mongoose.Schema.Tag.ObjectId, 
+    ref: "Tag"
+  }
 });
 
 export default mongoose.model("Product", ProductSchema);
