@@ -3,7 +3,7 @@ import Product from "../models/Product";
 class ProductService {
   async productCreate(payload) {
     try {
-      const product = await User.create({
+      const product = await Product.create({
         nome: payload.nome,
         imagem: payload.imagem,
         descricao: payload.descricao,
