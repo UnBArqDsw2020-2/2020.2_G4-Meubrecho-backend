@@ -32,10 +32,6 @@ routes.post(
   ProductController.criarProduto
 );
 
-routes.get(
-  "/product/:id",
-  validacaoCadastrarProduto,
-  ProductController.buscarProduto
-)
+routes.get("/product/:id", ProductController.buscarProduto);
 
 export default routes;

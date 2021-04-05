@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const ProductSchema = new mongoose.Schema({
   nome: {
@@ -19,14 +20,15 @@ const ProductSchema = new mongoose.Schema({
     required: true,
   },
   user_id: {
-    type: mongoose.Schema.User.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
-  
+
   tag: {
-   type: mongoose.Schema.Tag.ObjectId, 
-    ref: "Tag"
-  }
+    type: Schema.Types.ObjectId,
+    ref: "Tag",
+  },
 });
 
 export default mongoose.model("Product", ProductSchema);
