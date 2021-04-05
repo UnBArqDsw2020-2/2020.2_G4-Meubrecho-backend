@@ -25,6 +25,11 @@ const ProductSchema = new mongoose.Schema({
     required: true,
   },
 
+  user_favorite:[{
+    type: Schema.Types.ObjectId,
+    ref:"User"
+  }],
+
   tag: {
     type: Schema.Types.ObjectId,
     ref: "Tag",

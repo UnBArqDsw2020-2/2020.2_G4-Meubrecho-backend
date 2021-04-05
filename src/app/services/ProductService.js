@@ -1,4 +1,5 @@
 import Product from "../models/Product";
+import User from "../models/User"
 
 class ProductService {
   async productCreate(payload) {
@@ -25,6 +26,24 @@ class ProductService {
       return { sucess: false, error: error };
     }
   }
+  async productFavorite(payload){
+    try {
+      const product = await Product.findById(payload.id)
+      product.user_favorite.push(payload.user_id)
+
+      const user = await User.findById(payload.user_id)
+      user.product_favorite.push(payload.id)
+    
+      return {
+        product:product,
+        user : user
+      }
+      
+    } catch (error) {
+      return { sucess: false, error: error };
+    }
+  }
+
 }
 
 export default new ProductService();

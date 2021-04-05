@@ -16,6 +16,18 @@ class ProductController {
     const product = await ProductService.productGet(id)
     return res.json(product)
   }
+  async favoritarProduto(req,res){
+    const{id,favorite} = req.params
+    const payload={
+      id:id,
+      favorite:favorite,
+    }
+    payload.user_id = req.userId
+
+    const productFavorite = await ProductService.productFavorite(payload)
+    return res.json(productFavorite)
+  }
+
 }
 
 export default new ProductController();

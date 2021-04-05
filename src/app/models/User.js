@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new mongoose.Schema({
   nome: {
@@ -18,6 +18,12 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+
+  product_favorite:[{
+    type: Schema.Types.ObjectId,
+    ref : "Product"
+  }],
+  
   cpf: {
     type: Number,
     required: true,

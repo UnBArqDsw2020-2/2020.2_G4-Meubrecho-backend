@@ -7,6 +7,7 @@ export default async (req, res, next) => {
       imagem: Yup.string().required(),
       descricao: Yup.string().required(),
       preco: Yup.string().required(),
+      favorite: Yup.boolean(), 
     });
     await schema.validate(req.body, { abortEarly: false });
     return next();
