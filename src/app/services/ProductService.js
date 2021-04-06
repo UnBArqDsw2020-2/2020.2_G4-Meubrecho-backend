@@ -51,7 +51,21 @@ class ProductService {
     try{
       const allProducts = Product.find({})
       return (allProducts)
-    }catch{}
+    }catch(error){
+      return {sucess:false,error:error}
+    }
+  }
+  async deleteProduct(id,userId){
+    try{
+      const idUserOwner = Product.user_id.id
+      if (idUserOwner == userId){
+        const product = Product.findByIdAndRemove(id)
+        return product
+      }
+      return{message:"User not owner"}
+    }catch(error){
+      return {sucess:false,error:error}
+    }
   }
 
 }

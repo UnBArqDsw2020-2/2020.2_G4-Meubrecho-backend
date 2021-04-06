@@ -47,4 +47,10 @@ routes.get(
   "/product",
   ProductController.buscartodosProduto
 )
+
+routes.delete(
+  "/product/:id",
+  ProductController.apagarProduto
+)
+
 export default routes;

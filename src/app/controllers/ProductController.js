@@ -1,4 +1,5 @@
 import nodemon from "nodemon";
+import Product from "../models/Product";
 import ProductService from "../services/ProductService";
 
 class ProductController {
@@ -36,13 +37,22 @@ class ProductController {
     const {favorite} = req.query
     
     if(favorite){
-      const productsFavorite = await productsFavoriteGet(req.userId)
+      const productsFavorite = await ProductService.productsFavoriteGet(req.userId)
       return res.json(productsFavorite)
     }
-    const allProducts = await allProductsGet()
+    const allProducts = await ProductService.allProductsGet()
     return res.json(allProducts)
   
   }
+  async apagarProduto(req,res){
+    const{id} = req.params
+    const userId = req.userId
+    
+    
+    const productDeleted = await ProductService.deleteProduct(id,userId)
+    return res.json(productDeleted)
+    }
+
 }
 
 export default new ProductController();
