@@ -30,9 +30,6 @@ class ProductService {
     try {
       const product = await Product.findById(payload.id)
       product.user_favorite.push(payload.user_id)
-
-      const user = await User.findById(payload.user_id)
-      user.product_favorite.push(payload.id)
     
       return {
         product:product,
@@ -45,8 +42,8 @@ class ProductService {
   }
   async productsFavoriteGet(userId){
     try{
-      const user = User.findById(userId)
-      return user.product_favorite
+      const product_favorite = Product.user_favorite.findById(userId)
+      return product_favorite
     } catch(error){
       return {sucess:false,error:error}
     }
