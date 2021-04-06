@@ -32,16 +32,19 @@ routes.post(
   ProductController.criarProduto
 );
 
+routes.post(
+  "/product/:id/favorite/:favorite",
+  validacaoCadastrarProduto,
+  ProductController.favoritarProduto
+)
+
 routes.get(
   "/product/:id", 
   ProductController.buscarProduto
 );
 
-
-routes.post(
-  "/product/:id/favorite/:favoriteId",
-  validacaoCadastrarProduto,
-  ProductController.favoritarProduto
+routes.get(
+  "/product?favorite",
+  ProductController.buscartodosProduto
 )
-
 export default routes;

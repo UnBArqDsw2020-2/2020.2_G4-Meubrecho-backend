@@ -43,6 +43,20 @@ class ProductService {
       return { sucess: false, error: error };
     }
   }
+  async productsFavoriteGet(userId){
+    try{
+      const user = User.findById(userId)
+      return user.product_favorite
+    } catch(error){
+      return {sucess:false,error:error}
+    }
+  }
+  async allProductsGet(){
+    try{
+      const allProducts = Product.find({})
+      return (allProducts)
+    }catch{}
+  }
 
 }
 

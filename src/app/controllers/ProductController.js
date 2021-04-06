@@ -18,16 +18,31 @@ class ProductController {
   }
   async favoritarProduto(req,res){
     const{id,favorite} = req.params
-    const payload={
-      id:id,
-      favorite:favorite,
-    }
-    payload.user_id = req.userId
+    
+    if(favorite){
+      const payload={
+        id:id,
+        favorite:favorite,
+      }
+      payload.user_id = req.userId
 
-    const productFavorite = await ProductService.productFavorite(payload)
-    return res.json(productFavorite)
+      const productFavorite = await ProductService.productFavorite(payload)
+      return res.json(productFavorite)
+    }
+    return res.json({message:"favorite = false"})
   }
 
+  async buscartodosProduto(req,res){
+    const {favorite} = req.query
+    
+    if(favorite){
+      const productsFavorite = await productsFavoriteGet(req.userId)
+      return res.json(productsFavorite)
+    }
+    const allProducts = await allProductsGet()
+    return res.json(allProducts)
+  
+  }
 }
 
 export default new ProductController();
