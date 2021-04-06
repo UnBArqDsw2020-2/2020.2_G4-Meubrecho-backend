@@ -33,7 +33,6 @@ class ProductService {
     
       return {
         product:product,
-        user:user
       }
       
     } catch (error) {
