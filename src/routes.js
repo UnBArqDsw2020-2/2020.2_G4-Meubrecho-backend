@@ -44,7 +44,7 @@ routes.get(
 );
 
 routes.get(
-  "/product?favorite",
+  "/product",
   ProductController.buscartodosProduto
 )
 export default routes;
