@@ -26,14 +26,17 @@ class ProductService {
       return { sucess: false, error: error };
     }
   }
-  async productFavorite(payload){
+  
+  async productFavorite(user_id,productId){
     try {
-      const product = await Product.findById(payload.id)
-      product.user_favorite.push(payload.user_id)
-    
-      return {
-        product:product,
+      const product = await Product.findById(productId);
+      if(product.user_id == user_id){
+        return {Error:"Você não pode favoritar o seu própio produto!"}
       }
+      
+      await product.update({ $push: { user_favorite: user_id } });
+      const productUpdate = await Product.findById(productId);
+      return productUpdate;
       
     } catch (error) {
       return { sucess: false, error: error };
@@ -55,16 +58,28 @@ class ProductService {
       return {sucess:false,error:error}
     }
   }
-  async deleteProduct(id,userId){
+
+  async deleteProduct(productId,userId){
     try{
-      const idUserOwner = Product.user_id.id
+      const produto = await Product.findById(productId);
+      const idUserOwner = produto.user_id;
+      console.log(idUserOwner);
       if (idUserOwner == userId){
-        const product = Product.findByIdAndRemove(id)
+        const product = Product.findByIdAndRemove(productId)
         return product
       }
-      return{message:"User not owner"}
+      return{ Error:"User não é o dono"}
     }catch(error){
       return {sucess:false,error:error}
+    }
+  }
+
+  async todosMeusFavoritados(userId){
+    try{
+      const allProducts = await Product.find({user_favorite:userId});
+      return allProducts;
+    }catch(error){
+      return { Error:error }
     }
   }
 

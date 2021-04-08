@@ -26,31 +26,41 @@ routes.use(autenticadas);
 // Todas rotas abaixo necessitam do usuário estar logado.
 
 //Product routes
+
+//cria um produto
 routes.post(
   "/product",
   validacaoCadastrarProduto,
   ProductController.criarProduto
 );
 
+// favorita um produto
 routes.post(
-  "/product/:id/favorite/:favorite",
-  validacaoCadastrarProduto,
+  "/product/favorite/:productId",
   ProductController.favoritarProduto
 )
 
+// retorna apenas 1 produto
 routes.get(
   "/product/:id", 
   ProductController.buscarProduto
 );
 
+//retorna todos os produtos
 routes.get(
   "/product",
   ProductController.buscartodosProduto
 )
 
+//deleta um produto
 routes.delete(
-  "/product/:id",
+  "/product/:productId",
   ProductController.apagarProduto
 )
+
+// buscar todos os produtos favoritados por mim
+routes.get('/productfavorited',
+ProductController.todosMeusFavoritados)
+
 
 export default routes;

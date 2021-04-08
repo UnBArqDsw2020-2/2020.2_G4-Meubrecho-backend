@@ -1,5 +1,4 @@
-import nodemon from "nodemon";
-import Product from "../models/Product";
+
 import ProductService from "../services/ProductService";
 
 class ProductController {
@@ -17,20 +16,19 @@ class ProductController {
     const product = await ProductService.productGet(id)
     return res.json(product)
   }
-  async favoritarProduto(req,res){
-    const{id,favorite} = req.params
-    
-    if(favorite){
-      const payload={
-        id:id,
-        favorite:favorite,
-      }
-      payload.user_id = req.userId
 
-      const productFavorite = await ProductService.productFavorite(payload)
-      return res.json(productFavorite)
-    }
-    return res.json({message:"favorite = false"})
+
+  async favoritarProduto(req,res){
+   
+    const user_id = req.userId;
+    const productId = req.params.productId;
+    const productFavorite = await ProductService.productFavorite(
+      user_id,
+      productId,
+    )
+    return res.json(productFavorite)
+    
+    
   }
 
   async buscartodosProduto(req,res){
@@ -44,14 +42,26 @@ class ProductController {
     return res.json(allProducts)
   
   }
+
+
+
+
   async apagarProduto(req,res){
-    const{id} = req.params
+    const { productId } = req.params
     const userId = req.userId
     
     
-    const productDeleted = await ProductService.deleteProduct(id,userId)
+    const productDeleted = await ProductService.deleteProduct(productId,userId)
     return res.json(productDeleted)
-    }
+  }
+
+  async todosMeusFavoritados(req,res){
+    const userId = req.userId;
+    const allProducts = await ProductService.todosMeusFavoritados(userId);
+    return res.json(allProducts);
+  }
+
+  
 
 }
 
