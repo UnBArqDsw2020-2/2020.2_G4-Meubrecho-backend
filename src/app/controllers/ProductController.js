@@ -32,19 +32,10 @@ class ProductController {
   }
 
   async buscartodosProduto(req,res){
-    const {favorite} = req.query
-    
-    if(favorite){
-      const productsFavorite = await ProductService.productsFavoriteGet(req.userId)
-      return res.json(productsFavorite)
-    }
     const allProducts = await ProductService.allProductsGet()
     return res.json(allProducts)
   
   }
-
-
-
 
   async apagarProduto(req,res){
     const { productId } = req.params
