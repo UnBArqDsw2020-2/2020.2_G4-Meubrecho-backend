@@ -63,4 +63,8 @@ routes.get('/productfavorited',
 ProductController.todosMeusFavoritados)
 
 
-export default routes;
+// buscar todos os produtos que eu seja o dono
+routes.get('/productbyme',
+ProductController.todosMeusProdutos)
+
+export default routes; 

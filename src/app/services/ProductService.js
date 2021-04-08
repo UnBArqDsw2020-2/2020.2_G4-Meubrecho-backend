@@ -76,10 +76,20 @@ class ProductService {
 
   async todosMeusFavoritados(userId){
     try{
-      const allProducts = await Product.find({user_favorite:userId});
+      const allProducts = await Product.find({user_favorite:userId}).populate('user_id');
       return allProducts;
     }catch(error){
       return { Error:error }
+    }
+  }
+
+
+  async todosMeusProdutos(userId){
+    try{
+      const allProducts = await Product.find({user_id: userId});
+      return allProducts;
+    }catch(error){
+      return { Error:error}
     }
   }
 

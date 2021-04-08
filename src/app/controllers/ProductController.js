@@ -61,6 +61,12 @@ class ProductController {
     return res.json(allProducts);
   }
 
+  async todosMeusProdutos(req,res){
+    const userId = req.userId
+    const allProducts = await ProductService.todosMeusProdutos(userId);
+    return res.json(allProducts);
+  }
+
   
 
 }
