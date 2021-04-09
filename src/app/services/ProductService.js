@@ -1,5 +1,18 @@
 import Product from "../models/Product";
 import User from "../models/User"
+//Criar um atributo do tipo array para o Product 
+
+class compositeProduct{
+  constructor(){
+    this.arrayProduct = []
+  }
+  adicionarProduto(product){
+    product.map((produto)=>{
+      this.arrayProduct.push(produto)
+    })
+  }
+}
+
 
 class ProductService {
   async productCreate(payload) {
@@ -46,7 +59,9 @@ class ProductService {
   async allProductsGet(){
     try{
       const allProducts = Product.find({})
-      return (allProducts)
+      composite = new compositeProduct()
+      composite.adicionarProduto(allProducts)
+      return (composite.arrayProduct)
     }catch(error){
       return {sucess:false,error:error}
     }
@@ -70,7 +85,9 @@ class ProductService {
   async todosMeusFavoritados(userId){
     try{
       const allProducts = await Product.find({user_favorite:userId}).populate('user_id');
-      return allProducts;
+      composite = new compositeProduct()
+      composite.adicionarProduto(allProducts)
+      return composite;
     }catch(error){
       return { Error:error }
     }
@@ -80,7 +97,9 @@ class ProductService {
   async todosMeusProdutos(userId){
     try{
       const allProducts = await Product.find({user_id: userId});
-      return allProducts;
+      composite = new compositeProduct()
+      composite.adicionarProduto(allProducts)
+      return composite;
     }catch(error){
       return { Error:error}
     }
