@@ -19,7 +19,11 @@ routes.post(
   validacaoCadastroUsuario,
   Usercontroller.cadastrarUsuario
 );
-routes.post("/sessions", validacaoLoginUsuario, SessionController.logarUsuario);
+routes.post(
+  "/sessions", 
+  validacaoLoginUsuario, 
+  SessionController.logarUsuario
+  );
 
 //middleware
 routes.use(autenticadas);
@@ -59,12 +63,16 @@ routes.delete(
 )
 
 // buscar todos os produtos favoritados por mim
-routes.get('/productfavorited',
-ProductController.todosMeusFavoritados)
+routes.get(
+  '/productfavorited',
+ProductController.todosMeusFavoritados
+)
 
 
 // buscar todos os produtos que eu seja o dono
-routes.get('/productbyme',
-ProductController.todosMeusProdutos)
+routes.get(
+  '/productbyme',
+ProductController.todosMeusProdutos
+)
 
 export default routes; 

@@ -58,7 +58,7 @@ class ProductService {
   
   async allProductsGet(){
     try{
-      const allProducts = Product.find({})
+      const allProducts = await Product.find({})
       composite = new compositeProduct()
       composite.adicionarProduto(allProducts)
       return (composite.arrayProduct)
