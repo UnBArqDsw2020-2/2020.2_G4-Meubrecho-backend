@@ -32,7 +32,7 @@ class ProductController {
   }
 
   async buscartodosProduto(req,res){
-    const allProducts = await ProductService.allProductsGet()
+    const allProducts = await ProductService.allProductsGet();
     return res.json(allProducts)
   
   }
