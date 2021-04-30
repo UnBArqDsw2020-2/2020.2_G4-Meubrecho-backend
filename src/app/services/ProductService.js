@@ -85,7 +85,7 @@ class ProductService {
   async todosMeusFavoritados(userId){
     try{
       const allProducts = await Product.find({user_favorite:userId}).populate('user_id');
-      composite = new compositeProduct()
+      const composite = new compositeProduct()
       composite.adicionarProduto(allProducts)
       return composite;
     }catch(error){

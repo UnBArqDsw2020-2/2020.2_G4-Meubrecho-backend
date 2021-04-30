@@ -49,6 +49,7 @@ class ProductController {
   async todosMeusFavoritados(req,res){
     const userId = req.userId;
     const allProducts = await ProductService.todosMeusFavoritados(userId);
+  
     return res.json(allProducts);
   }
 
