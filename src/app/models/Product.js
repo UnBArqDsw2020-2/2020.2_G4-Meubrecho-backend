@@ -1,6 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const tags = [
+      "Camisas",
+      "Camisetas",
+      "Agasalhos",
+      "Vestidos",
+      "Bone",
+      "Chapeu",
+      "Outros",
+      "Calça",
+      "Short",
+      "Saia",
+      "Tenis",
+      "Sandalia",
+      "Bota",
+      "Salto",
+    ]
+
 const ProductSchema = new mongoose.Schema({
   nome: {
     type: String,
@@ -30,10 +47,10 @@ const ProductSchema = new mongoose.Schema({
     ref:"User"
   }],
 
-  tag: {
-    type: Schema.Types.ObjectId,
-    ref: "Tag",
-  },
+  tag: [{
+    type: String,
+		enum: Object.values(tags)
+  }],
 });
 
 export default mongoose.model("Product", ProductSchema);
