@@ -97,7 +97,7 @@ class ProductService {
   async todosMeusProdutos(userId){
     try{
       const allProducts = await Product.find({user_id: userId});
-      composite = new compositeProduct()
+      const composite = new compositeProduct()
       composite.adicionarProduto(allProducts)
       return composite;
     }catch(error){
